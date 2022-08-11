@@ -1,7 +1,7 @@
 import logging
 
 from aiogram import Bot, Dispatcher, executor, types
-
+from aiogram.types import ContentType
 
 
 API_TOKEN = '5388992561:AAFrfq9A5WK5aOEeyqRbEZWJXRaIpafnQbs'
@@ -16,6 +16,10 @@ dp = Dispatcher(bot)
 @dp.message_handler(commands=['start', 'help'])
 async def send_welcome(message: types.Message):
     await message.reply("Hi!\nI'm EchoBot!\nPowered by Aiogram.")
+
+@dp.message_handler(content_types=ContentType.PHOTO)
+async def picture_reaction(message: types.Message):
+    await message.reply("It's picture!")
 
 @dp.message_handler()
 async def echo(message: types.Message):
